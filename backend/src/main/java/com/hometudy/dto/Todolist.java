@@ -1,10 +1,20 @@
 package com.hometudy.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.io.Serializable;
 import lombok.Data;
 
@@ -12,20 +22,22 @@ import lombok.Data;
 @Data
 public class Todolist implements Serializable {
 	@Id
-	@JoinColumn(name="roomNo")
-	int roomNo;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	int todolistno;
 
-	@Id
-	@JoinColumn(name="uid")
+	//@JoinColumn(name="roomno")
+	int roomno;
+
+	//@JoinColumn(name="uid")
 	String uid;
 
-	@Id
-	LocalDateTime day;
-	
-	String goalList;
-	String done;
-	int studytime;
-	int attendance;
-	String filename;
+	@CreationTimestamp
+	LocalDate day;
 
+	int attendance; //0 : 불참, 1 : 참석
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="todolistno")
+	List<Goal> goalList = new ArrayList<>();
+	
 }
