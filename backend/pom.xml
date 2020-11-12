@@ -54,12 +54,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<!-- 디비 셋팅 주석 -->
@@ -81,6 +75,12 @@
    			<groupId>org.springframework.boot</groupId>
   			<artifactId>spring-boot-starter-thymeleaf</artifactId>
     	</dependency>
+
+		<!--웹 소켓 사용, stomp가 들어있습니다.-->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
