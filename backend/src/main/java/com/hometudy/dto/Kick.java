@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Kick implements Serializable {
+public class Kick {
 	@EmbeddedId
 	private KickId id;
 
