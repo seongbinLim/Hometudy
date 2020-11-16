@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.hometudy.dto.Material;
 import com.hometudy.dto.Room;
 import com.hometudy.service.MaterialService;
-import com.hometudy.service.RoomService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -32,19 +31,14 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class FileController {
     @Autowired
-    RoomService roomService;
-    @Autowired
     MaterialService materialService;
 
     @PostMapping(value = "/uploadImg/{roomno}")
     public ResponseEntity fileupload(HttpServletRequest request, @RequestParam("filename") MultipartFile mFile,
             @PathVariable int roomno) {
-        String path = "C:\\Users\\yagee\\";
+        String path = "C:\\Users\\seongbinLim\\";
         try {
             mFile.transferTo(new File(path + mFile.getOriginalFilename()));
-            Room room = roomService.findByRoomno(roomno);
-            room.setSrc(path + mFile.getOriginalFilename());
-            roomService.update(room, roomno);
         } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
             return new ResponseEntity(HttpStatus.BAD_GATEWAY);

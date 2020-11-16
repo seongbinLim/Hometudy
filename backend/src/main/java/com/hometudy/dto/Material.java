@@ -1,20 +1,35 @@
 package com.hometudy.dto;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
 @Entity
 @Data
-public class Material implements Serializable{
-	@Id
-	@JoinColumn(name="roomNo")
-	int roomNo;
-	@Id
-	String filename;
-	String src;
-	@JoinColumn(name="uid")
-	String uid;
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@Getter @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Material {
+ 
+    @Id
+    int materialno;
+    int roomno;
+    String filename;
+    String src;
+    String uid;
+
+    
 }
