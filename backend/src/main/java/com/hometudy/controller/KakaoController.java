@@ -40,6 +40,8 @@ public class KakaoController {
     public Model kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
+        log.info(model.toString());
+        
         KakaoPayApprovalVO info = kakaopay.kakaoPayInfo(pg_token);
         model.addAttribute("info", info);
         String uid = info.getPartner_user_id();

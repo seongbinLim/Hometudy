@@ -69,6 +69,8 @@ public class BoardService {
     }
 
     public Comment insertComment(Comment comment) {
+        if(!getBoard(comment.getBoardno()).isPresent())
+            return null;
         return commentDao.save(comment);
     }
 }
